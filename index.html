@@ -1,32 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <title>Giới thiệu</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body { background-color: #fff5f7; }
+    .custom-intro {
+      background-color: #fff0f5;
+      border: 2px solid #ffb6c1;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .custom-intro h3 { font-weight: 900; color: #d87093; }
+
+    #web-container {
+      margin-top: 30px;
+      display: none;
+    }
+
+    .embed-responsive-16by9 {
+      border: 5px solid #ffb6c1;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+   
+    .btn-back-action {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Danh sách Website</h2>
-  <p>Nhấn vào nút bên dưới để xem các dự án của tôi:</p>
-                                           
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-      Chọn Website 
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="https://tunhu041026-bit.github.io/BTMusic-web/" target="_blank">BTMusic Web</a></li>
-      
-      <li><a href="https://tunhuvidu2.netlify.app/" target="_blank">Dự án Netlify</a></li>
-      
-      <li class="divider"></li>
-      <li><a href="#">Khác...</a></li>
-    </ul>
+<div class="jumbotron text-center" style="background-color: #ffc0cb; margin-bottom: 0;">
+  <h1 style="font-weight: bold;">Giới thiệu</h1>
+</div>
+
+<div class="container" id="main-content">
+  <div class="row custom-intro">
+    <div class="col-sm-4">
+      <h3>Giới thiệu</h3>
+      <p>Nguyễn Thị Tú Như - DA24TTD</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Chuyên ngành</h3>
+      <p>Công nghệ thông tin</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Địa chỉ</h3>        
+      <p>Tp. Trà Vinh</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px; text-align: center;">
+    <h2>Danh sách Website</h2>
+    <p>Chọn một dự án để xem nội dung trực tiếp tại đây:</p>
+                                              
+    <div class="dropdown">
+      <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+        Chọn Website muốn xem <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" style="left: 50%; transform: translateX(-50%);">
+        <li><a href="javascript:void(0)" onclick="loadWeb('https://tunhu041026-bit.github.io/BTMusic-web/')">BTMusic Web</a></li>
+        <li><a href="javascript:void(0)" onclick="loadWeb('https://tunhuvidu2.netlify.app/')">Dự án Netlify</a></li>
+      </ul>
+    </div>
   </div>
 </div>
+
+<div class="container-fluid" id="web-container">
+  <div class="container">
+    <button class="btn btn-danger btn-back-action" onclick="closeWeb()">
+      <span class="glyphicon glyphicon-arrow-left"></span> Quay lại danh sách
+    </button>
+  </div>
+  
+  <div class="container embed-responsive embed-responsive-16by9">
+    <iframe id="web-frame" class="embed-responsive-item" src=""></iframe>
+  </div>
+</div>
+
+<script>
+  function loadWeb(url) {
+ document.getElementById('main-content').style.display = 'none';
+   document.getElementById('web-container').style.display = 'block';
+    document.getElementById('web-frame').src = url;
+    window.scrollTo(0, 0);
+  }
+
+  function closeWeb() {
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('web-container').style.display = 'none';
+    document.getElementById('web-frame').src = '';
+  }
+</script>
 
 </body>
 </html>
