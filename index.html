@@ -78,6 +78,79 @@
             transform: scale(1.03);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+
+        /* Phần CSS mới cho link Facebook và Google */
+        .social-login-links a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+        .social-login-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .link-facebook {
+            color: #1877F2;
+        }
+        .link-google {
+            color: #EA4335;
+        }
+
+        /* CSS BỔ SUNG CHO TRANG KINH NGHIỆM */
+        .experience-container {
+            display: flex;
+            gap: 30px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+        .experience-image-box {
+            flex: 0 0 280px;
+            min-height: 380px;
+            background-color: #ffefee;
+            border: 2px dashed #f8bbd0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .my-experience-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .experience-text-content {
+            flex: 1;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            color: #333;
+            border-bottom: 2px solid #fbc4db;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+        .custom-list {
+            padding-left: 20px;
+        }
+        .custom-list li {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        @media (max-width: 768px) {
+            .experience-container {
+                flex-direction: column;
+            }
+            .experience-image-box {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 280px;
+            }
+        }
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center py-5">
@@ -105,19 +178,11 @@
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu">
                     </div>
                     
-                    <div class="mb-4">
-                        <label class="form-label fw-semibold d-block">Đăng nhập bằng:</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="regMethod" id="regFB">
-                            <label class="form-check-label" for="regFB">Facebook</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="regMethod" id="regGmail">
-                            <label class="form-check-label" for="regGmail">Gmail</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="regMethod" id="regPhone">
-                            <label class="form-check-label" for="regPhone">Số điện thoại</label>
+                    <div class="mb-4 text-start">
+                        <label class="form-label fw-semibold d-block mb-2">Đăng nhập bằng:</label>
+                        <div class="social-login-links d-flex gap-3">
+                            <a href="#login-facebook" class="link-facebook"><i class="fab fa-facebook me-1"></i>Facebook</a>
+                            <a href="#login-google" class="link-google"><i class="fab fa-google me-1"></i>Google</a>
                         </div>
                     </div>
 
@@ -151,19 +216,11 @@
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu">
                     </div>
                     
-                    <div class="mb-4">
-                        <label class="form-label fw-semibold d-block">Đăng nhập bằng:</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="loginMethod" id="loginFB">
-                            <label class="form-check-label" for="loginFB">Facebook</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="loginMethod" id="loginGmail">
-                            <label class="form-check-label" for="loginGmail">Gmail</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="loginMethod" id="loginPhone">
-                            <label class="form-check-label" for="loginPhone">Số điện thoại</label>
+                    <div class="mb-4 text-start">
+                        <label class="form-label fw-semibold d-block mb-2">Đăng nhập bằng:</label>
+                        <div class="social-login-links d-flex gap-3">
+                            <a href="#login-facebook" class="link-facebook"><i class="fab fa-facebook me-1"></i>Facebook</a>
+                            <a href="#login-google" class="link-google"><i class="fab fa-google me-1"></i>Google</a>
                         </div>
                     </div>
 
@@ -212,21 +269,21 @@
 
             <div class="row g-4 mb-5">
                 <div class="col-md-4 col-sm-6">
-                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="alert('Thông tin Kinh nghiệm đang cập nhật...')">
+                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="switchPage('page-experience')">
                         <div class="fs-2">💼</div>
                         <h5 class="fw-bold mt-2">Kinh nghiệm</h5>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="alert('Thông tin Chia sẻ đang cập nhật...')">
+                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="switchPage('page-shares')">
                         <div class="fs-2">📢</div>
-                        <h5 class="fw-bold mt-2">Chia sẻ</h5>
+                        <h5 class="fw-bold mt-2">Chia sẻ/ Liên Kết</h5>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="switchPage('page-links')">
-                        <div class="fs-2">🔗</div>
-                        <h5 class="fw-bold mt-2">Liên kết</h5>
+                        <div class="fs-2">📞</div>
+                        <h5 class="fw-bold mt-2">Liên hệ</h5>
                     </div>
                 </div>
             </div>
@@ -274,7 +331,7 @@
                     <div class="card h-100 exercise-card p-4 text-center">
                         <div class="icon-box">📙</div>
                         <h5 class="card-title fw-bold">Bài Thơ</h5>
-                        <p class="card-text text-muted flex-grow-1">Website ví dụ số 2</p>
+                        <p class="card-text text-muted flex-grow-1">Website bài thơ</p>
                         <button onclick="switchPage('page-ex5')" class="btn btn-dark w-100 mt-2 fw-bold">Truy cập</button>
                     </div>
                 </div>
@@ -288,7 +345,134 @@
                     </div>
                 </div>
 
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">🔐</div>
+                        <h5 class="card-title fw-bold">Bài giao diện đăng nhập</h5>
+                        <p class="card-text text-muted flex-grow-1">Website giao diện Đăng Nhập</p>
+                        <button onclick="switchPage('page-ex7')" class="btn text-white w-100 mt-2 fw-bold" style="background-color: #6c5ce7; border: none;">Truy cập</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">🛠️</div>
+                        <h5 class="card-title fw-bold">Bài Tập Số 8</h5>
+                        <p class="card-text text-muted flex-grow-1">Website dự phòng / Bài học mới</p>
+                        <button onclick="switchPage('page-ex8')" class="btn btn-secondary w-100 mt-2 fw-bold">Truy cập</button>
+                    </div>
+                </div>
+
             </div> 
+        </div>
+
+        <div id="page-experience" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold mb-0" style="color: #db7093;">💼 KINH NGHIỆM HỌC TẬP</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+
+            <div class="experience-container">
+                <div class="experience-image-box">
+                    <img src="https://i.postimg.cc/QtWCzN9p/698e034e-4dc0-4a8c-8c9d-3074b2ebb30b.png" alt="Hình ảnh của tôi" class="my-experience-img">
+                </div>
+
+                <div class="experience-text-content">
+                    <h3 class="fw-bold mb-3" style="color: #b5476c;">Kinh nghiệm học tập & Phát triển</h3>
+                    <p class="text-secondary" style="text-align: justify; line-height: 1.6;">
+                        Qua quá trình học môn <strong>Thiết Kế Web</strong>, em đã tiếp thu được nhiều kiến thức và kỹ năng bổ ích như xây dựng giao diện bằng HTML, CSS, Bootstrap và tạo tính tương tác bằng JavaScript. 
+                        Mặc dù gặp nhiều khó khăn trong quá trình học tập, nhưng nhờ sự kiên trì thực hành và tìm hiểu tài liệu, em đã nâng cao được khả năng thiết kế website. 
+                        Môn học không chỉ giúp em phát triển kỹ năng chuyên môn mà còn rèn luyện tư duy sáng tạo và khả năng giải quyết vấn đề. 
+                        Đây sẽ là nền tảng quan trọng cho việc học tập và công việc trong lĩnh vực công nghệ thông tin sau này.
+                    </p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <h5 class="fw-bold section-title">📚 Kiến thức chuyên môn</h5>
+                            <ul class="custom-list">
+                                <li>Cách xây dựng cấu trúc trang web bằng HTML.</li>
+                                <li>Trang trí giao diện bằng CSS.</li>
+                                <li>Thiết kế web responsive bằng Bootstrap.</li>
+                                <li>Tạo hiệu ứng và tương tác bằng JavaScript.</li>
+                                <li>Tổ chức bố cục website hợp lý.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5 class="fw-bold section-title">💡 Kỹ năng mềm</h5>
+                            <ul class="custom-list">
+                                <li>Tư duy logic.</li>
+                                <li>Kỹ năng tìm kiếm tài liệu trên Internet.</li>
+                                <li>Kỹ năng làm việc nhóm.</li>
+                                <li>Kỹ năng giải quyết lỗi (debug).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-6 mb-3">
+                            <h5 class="fw-bold section-title">⚠️ Những khó khăn gặp phải</h5>
+                            <ul class="custom-list">
+                                <li>Khó nhớ các thẻ HTML và thuộc tính CSS.</li>
+                                <li>Gặp lỗi giao diện hiển thị không đúng.</li>
+                                <li>Khó căn chỉnh bố cục website.</li>
+                                <li>JavaScript khá phức tạp đối với người mới học.</li>
+                                <li>Thiếu ý tưởng thiết kế giao diện đẹp.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5 class="fw-bold section-title">🚀 Kinh nghiệm học tập hiệu quả</h5>
+                            <ul class="custom-list">
+                                <li>Thực hành thường xuyên.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-shares" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold mb-0" style="color: #db7093;">📢 CHIA SẺ ĐƯỜNG DẪN HỌC TẬP</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box text-danger"><i class="fab fa-html5"></i></div>
+                        <h5 class="card-title fw-bold">Học HTML - W3Schools</h5>
+                        <p class="card-text text-muted flex-grow-1">Trang web hướng dẫn chi tiết các thẻ và cấu trúc nền tảng HTML từ cơ bản đến nâng cao.</p>
+                        <a href="https://www.w3schools.com/html/" target="_blank" class="btn btn-danger w-100 mt-2 fw-bold">Ghé thăm trang</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box text-primary"><i class="fab fa-bootstrap"></i></div>
+                        <h5 class="card-title fw-bold">Bootstrap - W3Schools</h5>
+                        <p class="card-text text-muted flex-grow-1">Tài liệu tra cứu cách sử dụng Framework Bootstrap giúp tối ưu thiết kế giao diện responsive.</p>
+                        <a href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp" target="_blank" class="btn btn-primary w-100 mt-2 fw-bold">Ghé thăm trang</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box" style="color: #ff7f50;"><i class="fas fa-image"></i></div>
+                        <h5 class="card-title fw-bold">Postimages</h5>
+                        <p class="card-text text-muted flex-grow-1">Công cụ lưu trữ và upload ảnh trực tuyến miễn phí để lấy link ảnh nhúng vào trang web.</p>
+                        <a href="https://postimages.org/" target="_blank" class="btn fw-bold text-white w-100 mt-2" style="background-color: #ff7f50;">Ghé thăm trang</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box text-success"><i class="fas fa-university"></i></div>
+                        <h5 class="card-title fw-bold">Đại học Trà Vinh</h5>
+                        <p class="card-text text-muted flex-grow-1">Trang chủ chính thức của Trường Đại học Trà Vinh (TVU) - Nơi em đang theo học ngành CNTT.</p>
+                        <a href="https://www.tvu.edu.vn/" target="_blank" class="btn btn-success w-100 mt-2 fw-bold">Ghé thăm trang</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="page-ex1" class="web-page w-100">
@@ -337,6 +521,22 @@
                 <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
             </div>
             <iframe src="https://tunhu041026-bit.github.io/thegioididong.html/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-ex7" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold mb-0" style="color: #6c5ce7;">🔐 Trang thiết kế đăng nhập - Đăng Nhập Hệ Thống</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            <iframe src="https://tunhu041026-bit.github.io/dangnhap.html/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-ex8" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-secondary mb-0">🛠️ Bài Tập Số 8 - Đang Cập Nhật</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            <iframe src="about:blank" class="exercise-iframe"></iframe>
         </div>
 
         <div id="page-links" class="web-page w-100">
