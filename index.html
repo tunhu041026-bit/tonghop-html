@@ -1,198 +1,384 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Tú Như</title>
+    <title>Website Tổng Hợp - Tú Như</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body, html { height: 100%; margin: 0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        .gradient-bg {
-            background: linear-gradient(45deg, #f39c12, #e74c3c, #9b59b6, #3498db, #2ecc71);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
             min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .custom-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+            background: white;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+        }
+        .profile-card {
+            background: linear-gradient(135deg, #f9bce5 0%, #fecfef 100%);
+            color: #333;
+        }
+        .exercise-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: white;
+        }
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+        }
+        .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .exercise-iframe {
+            width: 100%;
+            height: 75vh;
+            border: 2px dashed #ff9a9e;
+            border-radius: 15px;
+            background: #fafafa;
+        }
+        .web-page {
+            display: none;
+        }
+        .web-page.active {
+            display: block;
+        }
+        .links-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 40px auto;
+        }
+        .social-link-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .page { display: none; width: 100%; }
-        .active { display: block; }
-        .avatar-circle {
-            width: 150px; height: 150px; background: #fff; border-radius: 50%;
-            margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
-            overflow: hidden; border: 5px solid rgba(255,255,255,0.5);
-        }
-        .avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
-        .info-box { background-color: #fff9c4; color: #333; padding: 20px; border-radius: 15px; border: 2px solid #fbc02d; margin-top: 20px; }
-        .btn-custom { margin: 10px; padding: 10px 30px; border-radius: 30px; }
-        .btn-next-fixed { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
-        .btn-logout-fixed { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-        
-       
-        #webViewer {
-            width: 100%; height: 400px; border: 2px solid white; border-radius: 10px; margin-top: 20px; display: none;
-        }
-        .project-list a { color: #f39c12; text-decoration: none; font-weight: bold; }
-        .project-list a:hover { text-decoration: underline; }
-
-        .avatar-small {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #ccc;
-        }
-
-        .avatar-small img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .social-link-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
-<body>
+<body class="d-flex align-items-center justify-content-center py-5">
 
-    <div class="gradient-bg">
-        
-       
-        <div id="page1" class="page active">
-            <h1 class="display-1 fw-bold">Xin Chào</h1>
-            <div class="mt-4">
-              <button class="btn btn-light btn-lg btn-custom" onclick="showPage('page2')">Đăng Ký</button>
+    <div class="container">
+
+        <div id="page-welcome" class="web-page active text-center">
+            <div class="custom-card">
+                <h1 class="fw-bold text-danger mb-4">Xin Chào! 👋</h1>
+                <p class="text-muted mb-4">Chào mừng bạn đã ghé thăm trang web của mình.</p>
+                <button class="btn btn-danger btn-lg w-100 py-3 fw-bold" style="background-color: #ff69b4; border: none;" onclick="switchPage('page-register')">Đăng Ký Ngay</button>
             </div>
         </div>
 
-        <div id="page2" class="page">
-            <h1 class="display-3 fw-bold">Chào mừng bạn đến với webside của tôi</h1>
-            <p class="fs-4">Bạn đã đăng kí thành công</p>
-            <button class="btn btn-primary btn-lg btn-next-fixed" onclick="showPage('page3')">Tiếp tục</button>
-        </div>
-
-        <div id="page3" class="page">
-            <div class="avatar-circle">
-                <img src="https://i.postimg.cc/SjQStFXq/anh-tu-nhu.jpg" alt="Avatar">
-            </div>
-            <h2 class="fw-bold">Tú Như</h2>
-            <button class="btn btn-outline-light mt-3" onclick="showPage('page4')">Đăng nhập</button>
-            <p class="mt-2">Welcome</p>
-            <button class="btn btn-sm btn-secondary mt-5" onclick="showPage('page2')">Quay lại</button>
-        </div>
-
-        
-        <div id="page4" class="page">
-            <h1 class="display-2 fw-bold mb-4">GIỚI THIỆU</h1>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="info-box shadow text-start">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 text-center">
-                                    <div class="avatar-small">
-                                        <img src="https://i.postimg.cc/fR9z2Ky5/anh-tu-nhu-2.jpg" alt="Avatar">
-                                    </div>
-                                        </div>
-                                <div class="col-md-8">
-                                    <p><strong>Họ tên:</strong> Nguyễn Thị Tú Như</p>
-                                    <p><strong>Lớp:</strong> DA24TTD</p>
-                                    <p><strong>Ngành:</strong> Công nghệ thông tin ĐH Trà Vinh</p>
-                                </div>
-                            </div>
+        <div id="page-register" class="web-page">
+            <div class="custom-card">
+                <h3 class="fw-bold text-center mb-4" style="color: #ff69b4;">ĐĂNG KÝ TÀI KHOẢN</h3>
+                <form onsubmit="event.preventDefault();">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Họ tên</label>
+                        <input type="text" class="form-control" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Mật khẩu</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold d-block">Đăng nhập bằng:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="regMethod" id="regFB">
+                            <label class="form-check-label" for="regFB">Facebook</label>
                         </div>
-
-                        <div class="dropdown mt-4">
-                            <button class="btn btn-warning btn-lg dropdown-toggle w-100 fw-bold" type="button" data-bs-toggle="dropdown">Xem Thêm</button>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item" href="#" onclick="showSubPage('sub1')">Trải Nghiệm</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="showSubPage('sub2')">Kinh Nghiệm</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="showSubPage('sub3')">Chia sẻ</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="showSubPage('sub4')">Liên Kết</a></li>
-                            </ul>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="regMethod" id="regGmail">
+                            <label class="form-check-label" for="regGmail">Gmail</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="regMethod" id="regPhone">
+                            <label class="form-check-label" for="regPhone">Số điện thoại</label>
                         </div>
                     </div>
+
+                    <div class="mb-4 form-check text-start">
+                        <input type="checkbox" class="form-check-input" id="savePass">
+                        <label class="form-check-label text-muted" for="savePass">Lưu mật khẩu</label>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-outline-secondary w-100 py-2 fw-bold" onclick="switchPage('page-welcome')">Quay lại</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-danger w-100 py-2 fw-bold" style="background-color: #ff69b4; border: none;" onclick="switchPage('page-login')">Tiếp tục</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="page-login" class="web-page">
+            <div class="custom-card">
+                <h3 class="fw-bold text-center mb-4" style="color: #ff69b4;">ĐĂNG NHẬP NGAY</h3>
+                <form onsubmit="event.preventDefault();">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Họ tên</label>
+                        <input type="text" class="form-control" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Mật khẩu</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold d-block">Đăng nhập bằng:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="loginMethod" id="loginFB">
+                            <label class="form-check-label" for="loginFB">Facebook</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="loginMethod" id="loginGmail">
+                            <label class="form-check-label" for="loginGmail">Gmail</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="loginMethod" id="loginPhone">
+                            <label class="form-check-label" for="loginPhone">Số điện thoại</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 text-start">
+                        <a href="#" class="text-danger" style="text-decoration: underline; font-style: italic;">Quên mật khẩu?</a>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-outline-secondary w-100 py-2 fw-bold" onclick="switchPage('page-register')">Quay lại</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-danger w-100 py-2 fw-bold" style="background-color: #ff69b4; border: none;" onclick="switchPage('page-success')">Tiếp tục</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="page-success" class="web-page text-center">
+            <div class="custom-card">
+                <div class="text-success mb-3" style="font-size: 4rem;">🎉</div>
+                <h3 class="fw-bold">Chào mừng bạn đến với Website của tôi</h3>
+                <p class="text-muted small">Bạn đã đăng nhập thành công!!</p>
+                <button class="btn btn-success mt-3 px-4 py-2 fw-bold" onclick="switchPage('page-main')">Vào Trang Chủ</button>
+            </div>
+        </div>
+
+        <div id="page-main" class="web-page" style="max-width: 1140px; margin: auto;">
+            
+            <div class="card profile-card p-4 shadow-sm mb-5 position-relative">
+                <button class="btn btn-danger btn-sm position-absolute top-0 end-0 m-3" onclick="switchPage('page-welcome')">Đăng xuất</button>
+                
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <img src="https://i.postimg.cc/SjQStFXq/anh-tu-nhu.jpg" alt="Avatar Tú Như" class="rounded-3 img-thumbnail shadow-sm mb-2" width="160" style="aspect-ratio: 1/1; object-fit: cover;">
+                    </div>
+                    <div class="col-md-7 text-md-start text-center">
+                        <h2 class="fw-bold mb-3">GIỚI THIỆU BẢN THÂN</h2>
+                        <p class="mb-1"><strong>Họ tên:</strong> Nguyễn Thị Tú Như</p>
+                        <p class="mb-1"><strong>Lớp:</strong> DA24TTD</p>
+                        <p class="mb-3"><strong>Ngành:</strong> Công nghệ thông tin ĐH Trà Vinh</p>
+                    </div>
                 </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4 col-sm-6">
+                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="alert('Thông tin Kinh nghiệm đang cập nhật...')">
+                        <div class="fs-2">💼</div>
+                        <h5 class="fw-bold mt-2">Kinh nghiệm</h5>
+                    </div>
                 </div>
-            <button class="btn btn-danger btn-logout-fixed" onclick="showPage('page1')">Đăng xuất</button>
-        </div>
-
-        
-        <div id="sub1" class="page container">
-            <h2 class="fw-bold">TRẢI NGHIỆM</h2>
-            <div class="p-4 bg-white text-dark rounded mt-3">
-                <p class="fw-bold">Danh sách dự án của tôi:</p>
-                <ul class="list-unstyled project-list fs-5">
-                <li class="mb-2">🎵 <a href="#" onclick="loadWeb('https://tunhu041026-bit.github.io/BTMusic-web/')">BTMusic Web</a></li>
-                    <li>🌐 <a href="#" onclick="loadWeb('https://tunhuvidu2.netlify.app/')">Netlify Project</a></li>
-                </ul>
-                <!-- Khung hiển thị web  -->
-                <iframe id="webViewer" src=""></iframe>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="alert('Thông tin Chia sẻ đang cập nhật...')">
+                        <div class="fs-2">📢</div>
+                        <h5 class="fw-bold mt-2">Chia sẻ</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="card p-3 text-center exercise-card" style="cursor: pointer;" onclick="switchPage('page-links')">
+                        <div class="fs-2">🔗</div>
+                        <h5 class="fw-bold mt-2">Liên kết</h5>
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-light mt-4" onclick="closeWeb()">Quay lại</button>
+
+            <h3 class="fw-bold text-uppercase mb-4" style="color: #db7093;"><span class="me-2">📚</span>Trải Nghiệm Một Số Bài Tập </h3>
+            <div class="row g-4">
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">📝</div>
+                        <h5 class="card-title fw-bold">Bài đăng ký</h5>
+                        <p class="card-text text-muted flex-grow-1">Website đăng ký thông tin sinh viên</p>
+                        <button onclick="switchPage('page-ex1')" class="btn btn-success w-100 mt-2 fw-bold">Truy cập</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">⭐</div>
+                        <h5 class="card-title fw-bold">Điểm rèn luyện</h5>
+                        <p class="card-text text-muted flex-grow-1">Website quản lý điểm rèn luyện</p>
+                        <button onclick="switchPage('page-ex2')" class="btn btn-warning text-dark w-100 mt-2 fw-bold">Truy cập</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">🎵</div>
+                        <h5 class="card-title fw-bold">Bài Music</h5>
+                        <p class="card-text text-muted flex-grow-1">Website nghe nhạc cá nhân</p>
+                        <button onclick="switchPage('page-ex3')" class="btn btn-primary w-100 mt-2 fw-bold">Truy cập</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">🎓</div>
+                        <h5 class="card-title fw-bold">Kỳ thi tốt nghiệp THPT</h5>
+                        <p class="card-text text-muted flex-grow-1">Website tra cứu thông tin kỳ thi THPT</p>
+                        <button onclick="switchPage('page-ex4')" class="btn btn-info text-white w-100 mt-2 fw-bold">Truy cập</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">📙</div>
+                        <h5 class="card-title fw-bold">Bài Thơ</h5>
+                        <p class="card-text text-muted flex-grow-1">Website ví dụ số 2</p>
+                        <button onclick="switchPage('page-ex5')" class="btn btn-dark w-100 mt-2 fw-bold">Truy cập</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 exercise-card p-4 text-center">
+                        <div class="icon-box">📒</div>
+                        <h5 class="card-title fw-bold">Bài Thế giới di động</h5>
+                        <p class="card-text text-muted flex-grow-1">Website giao diện Thế Giới Di Động</p>
+                        <button onclick="switchPage('page-ex6')" class="btn btn-warning text-dark w-100 mt-2 fw-bold" style="background-color: #ff8c00; border: none; color: #fff !important;">Truy cập</button>
+                    </div>
+                </div>
+
+            </div> 
         </div>
 
-        <!-- Các trang sub2, sub3, sub4  -->
-        <div id="sub2" class="page">
-            <h2 class="fw-bold">KINH NGHIỆM</h2>
-            <div class="p-5 bg-white text-dark rounded mt-3 text-start mx-auto" style="max-width: 600px;">
-                <ul>
-                    <li>Thực tập thiết kế giao diện tại trường.</li>
-                    <li>Sử dụng thành thạo Bootstrap và HTML/CSS.</li>
-                </ul>
+        <div id="page-ex1" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-success mb-0">📝 Bài Đăng Ký Sinh Viên</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
             </div>
-            <button class="btn btn-light mt-4" onclick="showPage('page4')">Quay lại</button>
+            <iframe src="https://tunhu041026-bit.github.io/btdangky-html/" class="exercise-iframe"></iframe>
         </div>
 
-        <div id="sub3" class="page">
-            <h2 class="fw-bold">CHIA SẺ</h2>
-            <div class="p-5 bg-white text-dark rounded mt-3 mx-auto" style="max-width: 600px;">Nội dung sẽ cập nhật sau.</div>
-            <button class="btn btn-light mt-4" onclick="showPage('page4')">Quay lại</button>
-        </div>
-
-        <div id="sub4" class="page">
-            <h2 class="fw-bold">LIÊN KẾT</h2>
-            <div class="list-group mt-3 mx-auto" style="max-width: 400px;">
-                <a href="https://www.google.com" target="_blank" class="list-group-item list-group-item-action">Google</a>
-                <a href="https://tvu.edu.vn" target="_blank" class="list-group-item list-group-item-action">Đại học Trà Vinh</a>
+        <div id="page-ex2" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-warning mb-0">⭐ Bài quản lý điểm Rèn Luyện</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
             </div>
-            <button class="btn btn-light mt-4" onclick="showPage('page4')">Quay lại</button>
+            <iframe src="https://tunhu041026-bit.github.io/diemrenluyen-html/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-ex3" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-primary mb-0">🎵 Bài tập Music - Nghe Nhạc Cá Nhân</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            <iframe src="https://tunhu041026-bit.github.io/BTMusic-web/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-ex4" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-info mb-0">🎓 Kỳ Thi Tốt Nghiệp THPT - Tra Cứu Thông Tin</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            <iframe src="https://tunhu041026-bit.github.io/kythitotnghiepthpt.html/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-ex5" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-dark mb-0">📙 Bài Tập Số 5 - Ví dụ 2</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            <iframe src="https://tunhuvidu2.netlify.app/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-ex6" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold mb-0" style="color: #ff8c00;">📒 Bài Tập Số 6 - Thế Giới Di Động</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            <iframe src="https://tunhu041026-bit.github.io/thegioididong.html/" class="exercise-iframe"></iframe>
+        </div>
+
+        <div id="page-links" class="web-page w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold mb-0" style="color: #db7093;">🔗 TRANG LIÊN HỆ CỦA TÔI</h4>
+                <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="switchPage('page-main')">⬅ Quay lại trang chủ</button>
+            </div>
+            
+            <div class="links-container text-center">
+                <p class="text-muted mb-4">Bạn có thể kết nối và liên hệ với mình qua các kênh dưới đây:</p>
+                
+                <a href="https://www.facebook.com/tusnhuw04102006" target="_blank" class="social-link-btn btn btn-primary mb-3" style="background-color: #1877F2; border: none;">
+                    <i class="fab fa-facebook-f"></i> Facebook của Tú Như
+                </a>
+                
+                <a href="tel:0868025050" class="social-link-btn btn text-white mb-3" style="background-color: #2ecc71; border: none;">
+                    <i class="fas fa-phone-alt"></i> Số điện thoại: 0868 025 050
+                </a>
+
+                <a href="mailto:tunhu041026@gmail.com" class="social-link-btn btn text-white mb-3" style="background-color: #ea4335; border: none;">
+                    <i class="fas fa-envelope"></i> Gmail: tunhu041026@gmail.com
+                </a>
+
+                <div class="social-link-btn btn text-white mb-3" style="background-color: #95a5a6; border: none; cursor: default;">
+                    <i class="fas fa-map-marker-alt"></i> Địa chỉ: Vĩnh Long
+                </div>
+            </div>
         </div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.web-page');
             pages.forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        function showSubPage(subId) {
-            showPage(subId);
-        }
-
-        // Hàm tải web vào iframe
-        function loadWeb(url) {
-            const viewer = document.getElementById('webViewer');
-            viewer.src = url;
-            viewer.style.display = 'block';
-        }
-
-        // Hàm quay lại và đóng iframe
-        function closeWeb() {
-            document.getElementById('webViewer').style.display = 'none';
-            document.getElementById('webViewer').src = '';
-            showPage('page4');
+            
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+            window.scrollTo(0, 0); 
         }
     </script>
 </body>
